@@ -1,5 +1,6 @@
 = AsciiDoc Basics
 Dan Allen <https://github.com/mojavelinux>; Sarah White
+:page-permalink: getting-started
 
 AsciiDoc is a lightweight markup language that supports the structural and semantic elements necessary for writing technical documentation that can be published to the web or output to a variety of other formats, such as PDF.
 You can write an AsciiDoc document using Atom, VS Code, or your preferred plain text editor.
