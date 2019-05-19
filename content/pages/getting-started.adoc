@@ -1,0 +1,297 @@
+= AsciiDoc Basics
+Dan Allen <https://github.com/mojavelinux>; Sarah White
+
+AsciiDoc is a lightweight markup language that supports the structural and semantic elements necessary for writing technical documentation that can be published to the web or output to a variety of other formats, such as PDF.
+You can write an AsciiDoc document using Atom, VS Code, or your preferred plain text editor.
+To convert an AsciiDoc document to another format, or extract information from it, you use an AsciiDoc processor such as Asciidoctor.
+
+== Document Structure
+
+There are two parts to an AsciiDoc document, the header and the body.
+As with all block elements in AsciiDoc, these parts are separated by a blank line.
+(If you're familiar HTTP, it follows the same general structure of an HTTP response).
+Both parts are optional.
+
+The simplest AsciiDoc document is a blank file.
+The simplest AsciiDoc document _that has content_ is a single word.
+
+[,asciidoc]
+----
+hello!
+----
+
+You can convert this document to HTML using the following command:
+
+ $ asciidoctor sample.adoc
+
+If you're using an editor with AsciiDoc support, like Atom, you can see a rendered HTML preview of your document as you type.
+
+If you want more than one paragraph, separate the lines of content by a single blank line.
+
+[,asciidoc]
+----
+This is one paragraph.
+
+This is another.
+----
+
+If sentences are not separated by a blank line, then they are assumed to be part of the same paragraph.
+Hard line breaks inside a paragraph are treated as a single space (unless a special option or notation is used).
+
+[,asciidoc]
+----
+This is one sentence in the paragraph.
+This is another, but the reader won't see the hard line break between them.
+----
+
+To give your document a title, you define in the header, prefixed with an equal sign followed by a single space.
+
+[,asciidoc]
+----
+= Document Title
+
+hello!
+----
+
+A document is divided into sections using headings (aka section titles).
+Like the document title, a section title is defined by prefixing the line with multiple, consecutive equal signs followed by a single space.
+Each equal sign represents one level, so a level-2 heading is denoted by two equal signs.
+
+[,asciidoc]
+----
+= Document Title
+
+== Introduction
+
+== Topic
+
+== Conclusion
+----
+
+Section levels must be sequential.
+If you skip a level, you'll get a warning from the processor.
+It's important to separate content from presentation, so you should not apply bold formatting to the text of a heading.
+A heading is a semantic element and the presentation stylesheet will handle displaying it correctly.
+This rule holds true throughout the AsciiDoc syntax.
+Focus on what you want (semantics), not on how it looks (presentation).
+
+In addition to the document title, you also use the header to define document attributes (not to be confused with block attributes, which we'll talk about later).
+Document attributes are defined using an attribute entry line, which consists of a name part and an optional value part.
+
+[,asciidoc]
+----
+:name: value
+----
+
+Document attributes defined in the header serve two purposes.
+One is to configure built-in behavior, such as enabling the table of contents.
+Most attributes for configuring behavior *only* work when defined in the header.
+
+[,asciidoc]
+----
+= Document Title
+:toc:
+
+== Introduction
+
+== Topic
+
+== Conclusion
+----
+
+The other is define reusable bits of content, such as URLs, names, and common phrases.
+
+[,asciidoc]
+----
+= Document Title
+:url-asciidoctor: https://asciidoctor.org
+
+Visit {url-asciidoctor} to learn about Asciidoctor.
+----
+
+The attribute name surrounded in curly braces is known as an attribute reference.
+When the document is converted, the attribute reference is replaced with the value of the attribute (anywhere normal substitutions are applied).
+If the attribute is missing, the processor will ignore it by default, though you can configure the processor to warn.
+
+It's customary to add a type prefix / namespace to attributes to organize them and keep them from colliding with each other.
+
+Optionally, you can add an author to the document by placing the name (or names separated by semi-colons) directly below the document title.
+
+[,asciidoc]
+----
+= Document Title
+Doc Writer
+
+hello!
+----
+
+Directly below the author line, you can define the revision number (revnumber) and date (revdate).
+
+[,asciidoc]
+----
+= Document Title
+Doc Writer
+v1.0, 2019-05-19
+
+hello!
+----
+
+Just remember, a single blank line signals the end of the header.
+The document body begins at the subsequent line.
+
+You can also define document attributes outside of the document header, but it's not recommended.
+
+== Text Formatting
+
+Most of the time when writing, you can get away with headings and paragraph text, with some attributes to save you from duplicating the same text (especially URLs).
+You should not feel bad about this.
+Simpler documents are easier to review, edit, and maintain.
+When you find yourself needing to add more structure to your document, AsciiDoc offers a plethora of markup to designate more fine-grained and/or domain-specific semantics.
+You can always find a quick reference close at hand using the following command:
+
+ $ asciidoctor --help syntax
+
+The first markup you'll probably reach for is strong (bold), stress emphasis (italic), and monospaced (code) text.
+While these are certainly important for calling attention to certain words and phrases in the text, you really should use them sparingly and strategically.
+For example, if you are going to bold an important word, consider only doing it for the first instance.
+After that, the reader will know what you mean, and it will save you from having to spend time dressing up your text like a holiday tree.
+
+Without further ado, here's how to make strong (bold), stress emphasis (italic), and monospaced (code) text.
+
+[,asciidoc]
+----
+*strong* (aka bold)
+_stress emphasis_ (aka italic)
+`monospaced` (aka code or typewriter)
+----
+
+//TODO: mark / unquoted
+
+By default, AsciiDoc syntax is interpretted inside monospaced text.
+This includes additional formatting, attribute references, and the like.
+If you want a code literal, which is roughly the equivalent of backticks in Markdown, enclose the text in plus.
+
+[,asciidoc]
+----
+`+code literal+`
+----
+
+If you just want literal text, but not monospace, just use the plus enclosure.
+
+[,asciidoc]
+----
++literal+
+----
+
+These are examples of constrained formatting.
+Constrained formatting is applied around a word or phrase, allowing for surrounding punctuation in most cases.
+If you need to apply formatting in the middle of a word, then you need to double up the marks.
+For example:
+
+[,asciidoc]
+----
+**C**reate, **R**ead, **U**pdate, & **D**elete (CRUD)
+fan__freakin__tastic
+``mono``culture
+----
+
+AsciiDoc has built-in support for smart typography, such as curly quotes, dashes, and ellipses.
+In some cases, this substitution happens automatically, such as the case with dashes, ellipses, and apostrophes.
+
+[,asciidoc]
+----
+I believe I shall--no, actually I won't.
+But then again...
+----
+
+To get curly quotes, you must modify the quotes using backticks as follows:
+
+[,asciidoc]
+----
+"`smart`" double quotes
+'`smart`' singe quotes
+----
+
+== Content Blocks
+
+So far we have looked at basic document structure and formatting with paragraphs.
+But AsciiDoc has a rich set of blocks to choose from.
+This set, which includes lists, admonitions, figures, listings, and tables, can be expanded using extensions.
+
+Lists are made by combining one or more list items.
+A list item is donated by prefixing the line with an asterisk followed by a space, much like the structure of heading.
+However, the text of a list item can span more than one line.
+
+[,asciidoc]
+----
+* one
+* two
+* three
+oh lucky me!
+----
+
+To make a checklist, prefix the text with `[ ]` or `[x]`:
+
+[,asciidoc]
+----
+* [x] checked
+* [ ] not checked
+----
+
+Like with headings, you can create nested list items by adding more markers:
+
+[,asciidoc]
+----
+* level 1
+** level 2
+*** level 3
+* level 1 again
+----
+
+If you find it easier to read, you can indent the markers:
+
+[,asciidoc]
+----
+* level 1
+ ** level 2
+  *** level 3
+* level 1 again
+----
+
+To create an ordered list, replace the asterisks with dots.
+
+[,asciidoc]
+----
+. one
+. two
+. three
+numbers are free!
+----
+
+A special feature of AsciiDoc is that you can explicitly attach other blocks to a list item using a list continuation.
+A list continuation is a line with only a plus character.
+
+[,asciidoc]
+----
+* primary text
++
+attached paragraph
+----
+
+////
+== TODO
+
+* code listing (block and indented paragraph)
+* collapsible block
+* description list
+* macros
+* images (block and inline)
+* links
+* line comments / block comments
+* block attributes (id and role)
+* blockquote
+* admonition blocks
+* anchors and xrefs
+* include directive
+* preprocessor directives
+////
