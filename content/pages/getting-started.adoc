@@ -3,7 +3,7 @@ Dan Allen <https://github.com/mojavelinux>; Sarah White
 :page-permalink: getting-started
 
 AsciiDoc is a lightweight markup language that supports the structural and semantic elements necessary for writing technical documentation that can be published to the web or output to a variety of other formats, such as PDF.
-You can write an AsciiDoc document using Atom, VS Code, or your preferred plain text editor.
+You can write an AsciiDoc document using Atom, Visual Studio Code, or your preferred plain text editor.
 To convert an AsciiDoc document to another format, or extract information from it, you use an AsciiDoc processor such as Asciidoctor.
 
 == Document Structure
@@ -25,7 +25,8 @@ You can convert this document to HTML using the following command:
 
  $ asciidoctor sample.adoc
 
-If you're using an editor with AsciiDoc support, like Atom, you can see a rendered HTML preview of your document as you type.
+If you're using an editor with AsciiDoc support, like https://atom.io[Atom] or https://code.visualstudio.com[Visual Studio Code] (aka VS Code) with the offical AsciiDoc extensions, you can see a rendered HTML preview of your document as you type.
+Under the covers, these extensions use Asciidoctor to convert the document from AsciiDoc to HTML.
 
 If you want more than one paragraph, separate the lines of content by a single blank line.
 
