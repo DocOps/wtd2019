@@ -1084,9 +1084,11 @@ div.arrow {
     font-size: 20px;
 }
 
+/*
 div.content {
     max-width: 110px
 }
+*/
 
 #userMap div.arrow, #userMap div.content {
     float: left;
