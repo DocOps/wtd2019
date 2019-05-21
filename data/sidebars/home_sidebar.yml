@@ -18,6 +18,9 @@ entries:
     - title: Getting Started with AsciiDoc
       url: /getting-started
       output: web
+    - title: Ventilate Your Prose
+      url: /ventilated-prose
+      output: web
 
   - title: References
     output: web

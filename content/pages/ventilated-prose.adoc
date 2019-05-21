@@ -1,0 +1,93 @@
+= Ventilated Prose
+Dan Allen <https://github.com/mojavelinux>
+:page-permalink: ventilated-prose
+
+One of the advantages of writing in AsciiDoc is that you can ventilate your prose without affecting how that prose is displayed.
+Ventilated prose dates back to the 1930s, when Buckminster Fuller first coined the term.
+You may have also heard it called sentence per line or semantic line feeds.
+This technique has had a huge impact on my writing workflow and I want to share it with you.
+
+A typical way of writing is to let sentences soft wrap until you come to the end of a paragraph.
+That means the whole paragraph is strung together as one really long line.
+This makes the paragraph crowded and unstructured.
+Moving content around means having to carefully scissor and stitch runs of text, which is tedious and slow.
+
+.Soft wrap
+----
+In traditional prose, you cram all sentences together on a single line. This makes rearranging the sentences very tedious. It's also difficult to judge the length of each sentence.
+----
+
+Another approach is to hard wrap the lines at a fixed column width.
+However, that means that as you write, the text is constantly reflowing, which can be distracting, or you have to waste time going back to reflow it yourself, which means less time writing.
+And those reflows usually inflate the diff.
+Changing a word at the beginning of the paragraph can cause every line in the paragraph to shift.
+
+.Hard wrap
+----
+Another approach is to hard wrap prose at a fixed
+column width like you do when programming. This
+style looks rather unnatural and forces frequent
+reflows.
+----
+
+Although we ultimately group sentences together to make a paragraph, a sentence itself really stands on its own.
+It's a complete thought.
+And we want to grant it its independence.
+Ventilated prose gives you this capability.
+
+In ventilated prose, each sentence gets its own line;
+similar to how we put each statement on its own line in code.
+That means the sentence can be worked on in isolation w/o causing the document to reflow, simplifying editing and reviews.
+
+.Ventilated
+----
+In ventilated prose, you start each sentence on its own line.
+This style is similar to how you write code.
+
+Ventilated prose simplifies editing and allows your text to breathe.
+----
+
+It also makes comparing different versions of the file much easier because there are no artificial changes.
+You can even configure your editor to assign a line number to each sentence, which provides an easy way to refer to lines when editing collaboratively.
+Yet this behind-the-scenes structure is completely hidden to the reader, who still sees normal paragraphs.
+
+When you want to start a new sentence, just hit return and continue typing.
+Putting each sentence on its own line makes it easy to break long paragraphs apart.
+Just hit return at the start of a line and now it belongs to a new paragraph.
+Remove a blank line to fuse a paragraph back together.
+It's also easy to reorder sentences, especially if you take advantage of the move line shortcut.
+Don't like a sentence? Just drop the line.
+Or, you can disable it by prefixing it with a line comment character (which you can do quickly using a shortcut).
+After disabling a sentence, you may decide to rewrite it by just adding a new line below while still being able to refer to the original.
+Working at the line level could also make it easier for translators.
+And you now have room to use line comments to leave notes to yourself or another author.
+
+Ventilated prose makes it easier to spot run-on, repetitive, or exhausting sentences.
+Is the line close to wrapping?
+It's getting a little long and exhausting.
+Perhaps it's time to chop it up or make it shorter.
+Are all the sentences stopping at the same length?
+Maybe it's time vary the length with some shorter sentences, or let one run a bit longer.
+And you'll quickly spot problems with flow, such as when you repeatedly start sentences the same way.
+So mix it up.
+
+This ability to rearrange the text easily turns out to be really important since most of the effort with writing goes into editing.
+Efficient editing means you can crank out more content.
+// tag::reuse-me[]
+Putting each sentence on its own line makes it possible to tag individual sentences so they can be included in other documents, which encourages content reuse.
+// end::reuse-me[]
+
+In general, ventilated prose just lets the text breathe and become more well-rounded.
+That means you're more likely to produce writing that is easier to read.
+
+Ventilated prose also offers a nice transition from outlining to writing.
+When you outline, you make sets of lists with ideas.
+These ideas are sentence seedlings.
+Take one and start to mold it into a full sentence.
+Then take another.
+Reorder them a bit.
+Now remove the bullet in front of each list item and the paragraph starts to take shape.
+
+I believe ventilated prose is the most natural way to write.
+It aligns best with how we think, which is per sentence / point.
+And thanks to our digital writing environment, we can do this without altering how the text is displayed.
